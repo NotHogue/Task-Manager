@@ -4,15 +4,15 @@ const initialState = {
     Workspace: {
         Jeremiah: {
             toDo: [{
-                id: 'task-1',
+                // id: 'task-1',
                 task: 'die 1'
             },
             {
-                id: 'task-2',
+                // id: 'task-2',
                 task: 'die 2'
             },
             {
-                id: 'task-3',
+                // id: 'task-3',
                 task: 'die 3'
             }
             ],
@@ -52,6 +52,16 @@ const taskReducer = (state = initialState, action) => {
         }
         case types.POP_UP: {
             newTask.popUp = action.payload;
+            return newTask;
+        }
+        case types.ADD_CARD: {
+            if(action.payload.task === '') return newTask;
+            newTask.popUp = '';
+            const list = newTask.Workspace['Jeremiah'][action.payload.id]; //pull in specific workspace
+            list.push({
+                // id: `task-${list.length+1}`,
+                task: action.payload.task,
+            })
             return newTask;
         }
         default:

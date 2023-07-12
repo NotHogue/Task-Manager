@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = () => {
-    console.log(process.env.NODE_ENV);
 
     return {
         entry: [

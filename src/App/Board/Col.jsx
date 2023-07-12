@@ -9,11 +9,10 @@ export const Col = ({ list, id }) => {
     const dispatch = useDispatch();
     const popUp = useSelector((state) => state.tasks.popUp);
     const handleClick = (e) => {
-        e.preventDefault();
         dispatch(actions.addPopUp(id));
     }
     const handleSubmit = (e) => {
-        dispatch(actions.addPopUp(id));
+        dispatch(actions.addCard(e, id));
     }
     const Button = () => {
         const [formText, setFormText] = useState('');
@@ -25,8 +24,8 @@ export const Col = ({ list, id }) => {
 
         return (
             <form>
-                <input className='listItem' type="text" onChange={(e)=>setFormText(e.target.value)} placeholder='Enter name for card...' />
-                <button type='submit' className='button-84' onClick={()=>handleSubmit(formText)}>+ Add</button>
+                <input className='listItem' type="text" onChange={(e) => setFormText(e.target.value)} placeholder='Enter name for card...' />
+                <button type='submit' className='button-84' onClick={() => handleSubmit(formText)}>+ Add</button>
             </form>
         );
 
@@ -37,7 +36,7 @@ export const Col = ({ list, id }) => {
                 <div className="col" {...provided.droppableProps} ref={provided.innerRef}>
                     <div className='colHeader'>{id}</div>
                     {list.map((el, index) => (
-                        <Draggable draggableId={el.id} index={index} key={el.id}>
+                        <Draggable draggableId={id + index} index={index} key={el.id}>
                             {(provided) => (
                                 <div className='listItem'
                                     {...provided.draggableProps}

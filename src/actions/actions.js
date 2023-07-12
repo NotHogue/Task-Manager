@@ -22,3 +22,10 @@ export const addPopUp = (id) => ({
   type: types.POP_UP,
   payload: id
 });
+export const addCard = (task, id) => ({
+  type: types.ADD_CARD,
+  payload: {
+    task: task,
+    id: id
+  }
+});
