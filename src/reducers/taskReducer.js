@@ -5,15 +5,18 @@ const initialState = {
         Jeremiah: {
             toDo: [{
                 // id: 'task-1',
-                task: 'die 1'
+                task: 'failure',
+                description: 'i have never won in my life'
             },
             {
                 // id: 'task-2',
-                task: 'die 2'
+                task: 'sadness',
+                description: 'i have never been happy in my life'
             },
             {
                 // id: 'task-3',
-                task: 'die 3'
+                task: 'copium',
+                description: 'i have never coped in my life'
             }
             ],
             doing: [],

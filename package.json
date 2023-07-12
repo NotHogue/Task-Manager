@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "NODE_ENV=production",
-    "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack serve --open",
+    "build": "NODE_ENV=production webpack & NODE_ENV=production nodemon src/server/server.js",
+    "dev": "NODE_ENV=development webpack serve --open & nodemon src/server/server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

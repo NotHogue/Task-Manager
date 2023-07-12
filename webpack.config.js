@@ -16,11 +16,11 @@ module.exports = () => {
             filename: 'bundle.js',
         },
         mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
-        // devServer: {
-        //     proxy: {
-        //         "/api": "http://localhost:3000",
-        //     }
-        // },
+        devServer: {
+            proxy: {
+                "/": "http://localhost:3000",
+            }
+        },
         module: {
             rules: [
                 {
@@ -49,7 +49,7 @@ module.exports = () => {
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: './index.html',
+                template: './src/index.html',
             }),
         ]
     };
