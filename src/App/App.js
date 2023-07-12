@@ -1,10 +1,16 @@
 import React from 'react';
-
+import { Header } from './Header.jsx';
+import { SideNav } from './Nav/SideNav.jsx';
+import { Board } from './Board/Board.jsx';
 
 function App() {
+
   return (
-    <div>
-      <p>testing commits to github</p>
+    <div className='container'>
+      <Header />
+      <SideNav />
+      <Board />
+ 
     </div>
   );
 }

@@ -1,6 +1,48 @@
 @import '_variables';
+@import '_sidenav';
+@import '_board';
+@import '_button';
+@import '_popUp';
 
 body {
 background-color: $lightBlue;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    // border: 2px solid black;
+}
+
+.title {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 40px;
+    width: 5%;
+}
+.mainHeader {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    width: 100%;
+}
+.dropdown {
+    border: 2px solid purple;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 40px;
+    width: 10%;
 }
 
