@@ -5,21 +5,20 @@ const initialState = {
     name: 'Jeremiah',
     toDo: [{
         id: uuidv4(),
-        task: 'failure',
-        description: 'its all gone wrong'
-    },
-    {
-        id: uuidv4(),
-        task: 'sadness',
+        task: 'hopium',
         description: 'i cant even center a div'
-    },
-    {
+    }],
+    doing: [{
         id: uuidv4(),
-        task: 'copium',
+        task: 'i am struggle',
+        description: 'its all gone wrong'
+    }],
+    done: [{
+        id: uuidv4(),
+        task: 'perish',
         description: 'this shit is ass'
     }],
-    doing: [],
-    done: [],
+    tempId: uuidv4()
 };
 
 
@@ -91,6 +90,10 @@ const taskReducer = (state = initialState, action) => {
                 targetList.splice(index, 1);
             }
             return newTask;
+        }
+        case types.UPDATE_STATE: {
+            console.log(action.payload)
+            return action.payload;
         }
         default:
             return state;

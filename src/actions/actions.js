@@ -45,3 +45,8 @@ export const deleteCard = (elId, id) => ({
     id: id
   }
 });
+export const updateState = (state) => ({
+  type: types.UPDATE_STATE,
+  payload: state
+});
+
