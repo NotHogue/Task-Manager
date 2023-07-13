@@ -7,4 +7,5 @@ export const UPDATE_TWO_BOARDS = 'UPDATE_TWO_BOARDS';
 export const ADD_CARD = 'ADD_CARD';
 export const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
 export const DELETE_CARD = 'DELETE_CARD';
+export const UPDATE_TASK = 'UPDATE_TASK';
 

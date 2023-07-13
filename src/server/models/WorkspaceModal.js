@@ -3,18 +3,21 @@ const MONGO_URI = 'mongodb+srv://jhogue:wltkzjMtejMRR4nQ@cluster0.fexmjmv.mongod
 
 
 
-mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+// mongoose.connect(MONGO_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
 
-    dbName: 'workspaces'
-}).then(() => console.log('Connected to db'))
-    .catch(err => console.log(err));
+//     dbName: 'workspaces'
+// }).then(() => console.log('Connected to db'))
+//     .catch(err => console.log(err));
 
 const Schema = mongoose.Schema;
 
 const workspaceSchema = new Schema({
-    Workspace: Object
+    name: String,
+    toDo: Array,
+    doing: Array,
+    done: Array,
 })
 
 const Workspaces = mongoose.model('workspaces', workspaceSchema);

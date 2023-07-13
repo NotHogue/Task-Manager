@@ -61,15 +61,20 @@ a {
 .taskButton {
     display: flex;
     justify-content: start;
+    align-items: center;
+    height: 42px;
     width: 90%;
-    margin: -8px
+    margin: -8px;
+    box-shadow: none;
 }
 
 .deleteButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20px
+    width: 35px;
+    height: 28px;
+    margin: 1px -5px 0px 0px;
 }
 
 .describeButton {

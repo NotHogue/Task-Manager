@@ -1,8 +1,70 @@
 import React from 'react';
-// import { Dropdowns } from './Dropdowns.jsx'
+import { v4 as uuidv4 } from 'uuid';
 
 
 export const Header = () => {
+    const workspaces = {
+        Jeremiah: {
+            name: 'Jeremiah',
+            toDo: [{
+                id: uuidv4(),
+                task: 'failure',
+                description: 'its all gone wrong'
+            },
+            {
+                id: uuidv4(),
+                task: 'sadness',
+                description: 'i cant even center a div'
+            },
+            {
+                id: uuidv4(),
+                task: 'copium',
+                description: 'this shit is ass'
+            }],
+            doing: [],
+            done: [],
+        },
+        Demo: {
+            name: 'Jeremiah',
+            toDo: [{
+                id: uuidv4(),
+                task: 'failure',
+                description: 'its all gone wrong'
+            },
+            {
+                id: uuidv4(),
+                task: 'sadness',
+                description: 'i cant even center a div'
+            },
+            {
+                id: uuidv4(),
+                task: 'copium',
+                description: 'this shit is ass'
+            }],
+            doing: [],
+            done: [],
+        },
+        Secret: {
+            name: 'Jeremiah',
+            toDo: [{
+                id: uuidv4(),
+                task: 'failure',
+                description: 'its all gone wrong'
+            },
+            {
+                id: uuidv4(),
+                task: 'sadness',
+                description: 'i cant even center a div'
+            },
+            {
+                id: uuidv4(),
+                task: 'copium',
+                description: 'this shit is ass'
+            }],
+            doing: [],
+            done: [],
+        },
+    }
 
     let currentValue = 'DEFAULT';
     return (

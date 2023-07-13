@@ -7,18 +7,17 @@ import { ToDo } from './ToDo.jsx';
 import { Done } from './Done.jsx';
 
 export const Board = () => {
-    const name = 'Jeremiah';
-    const current = useSelector((state) => state.tasks.Workspace[name]);
+    const current = useSelector((state) => state.tasks);
     const dispatch = useDispatch();
 
     const dragEnd = (result) => {
         const { source, destination } = result;
-        if(!destination) return;
-        if(source.droppableId === destination.droppableId){
-            dispatch(actions.updateOneBoard(result, name));
+        if (!destination) return;
+        if (source.droppableId === destination.droppableId) {
+            dispatch(actions.updateOneBoard(result));
         }
-        else{
-            dispatch(actions.updateTwoBoards(result, name))
+        else {
+            dispatch(actions.updateTwoBoards(result))
         }
 
     }

@@ -11,24 +11,28 @@ export const Col = ({ list, id }) => {
     const [modalVis, setModalVis] = useState(false);
     const [modalTask, setModalTask] = useState({});
     const [popUp, setPopUp] = useState('');
-    const name = 'Jeremiah';
     const dispatch = useDispatch();
-    const handleClick = (type, id, task) => {
-        if (type === 'Delete') dispatch(actions.deleteCard(task, id));
+    const handleClick = (type, id, elId) => {
+        if (type === 'Delete') dispatch(actions.deleteCard(elId, id));
     }
     const handleSubmit = (text, type, id, elId) => { //refactor pls i BEG
         if (type === 'Add') dispatch(actions.addCard(text, id));
         if (type === 'Describe') dispatch(actions.updateDescription(text, id, elId));
+        if (type === 'Task') dispatch(actions.updateTask(text, id, elId));
     }
 
     //<----------------------------------------------------------------Button Start-------------------------------------------------------------------------->
     const Button = ({ type, el, id }) => {
-        const list = useSelector((state) => state.tasks.Workspace[name][id]);
+        const list = useSelector((state) => state.tasks[id]);
         const obj = list.find((o) => o.id === el.id);
         const des = obj ? obj.description : '';
+        const task = obj ? obj.task : '';
         const [addFormText, setAddFormText] = useState('');
+        const [addDes, setAddDes] = useState(false);
         const [desFormText, setDesFormText] = useState(des);
-        const [addDes, setAddDes] = useState(false); //switch would be better
+        const [taskFormText, setTaskFormText] = useState(task);
+        const [addTask, setAddTask] = useState(false);
+        //switch would be better
         if (type === 'Add') {
 
             if (id !== popUp) {
@@ -42,6 +46,22 @@ export const Col = ({ list, id }) => {
                     <input className='listItem addForm' type="text" onChange={(e) => setAddFormText(e.target.value)} placeholder='Enter name for card...' />
                     <button type='submit' className='button-84' onClick={() => { handleSubmit(addFormText, type, id); setPopUp('') }}>+ Add</button>
                 </form>
+            );
+        }
+
+        if (type === 'Task' && addTask === true) {
+            return (
+                <><input className='listItem formInput' type="text" onChange={(e) => setTaskFormText(e.target.value)} value={taskFormText} />
+                    <button type='submit' className='button-84 describeButton' onClick={() => { handleSubmit(taskFormText, type, id, el.id); setAddTask(false); }}>Update</button></>
+            );
+        }
+        if (type === 'Task' && addTask === false) {
+            return (
+                <><div className='listItem formInput'>{taskFormText}</div>
+                    <div className='describeButtonContainer'>
+                        <button type='submit' className='button-84 describeButton'>Update</button>
+                        <button className='button-84 pencilButton' onClick={() => setAddTask(true)}><img src={pencil} /></button>
+                    </div></>
             );
         }
         if (type === 'Describe' && addDes === true) {
@@ -65,9 +85,7 @@ export const Col = ({ list, id }) => {
         }
         if (type === 'Delete') {
             return (
-                <form>
-                    <button className='button-84 deleteButton' onClick={() => handleClick(type, id, el.task)}>X</button>
-                </form>
+                <button className='button-84 deleteButton' onClick={() => handleClick(type, id, el.id)}>X</button>
             );
         }
 
@@ -78,9 +96,12 @@ export const Col = ({ list, id }) => {
         <>
             <Modal open={modalVis} onClose={() => { setModalVis(false); setModalTask({}) }} >
                 <button className='button-84 closeModal' onClick={() => setModalVis(false)}>X</button>
-                <div className='popup-header'>Task: {modalTask.task}</div >
+                <div className='popup-header'>Task: </div >
+                <Button type='Task' el={modalTask} id={id} />
+                <div></div>
                 <div className='popup-header'>Description: </div>
-                <Button type='Describe' el={modalTask} id={id} /></Modal>
+                <Button type='Describe' el={modalTask} id={id} />
+            </Modal>
             <Droppable droppableId={id}>
                 {(provided) => (
                     <div className="col" {...provided.droppableProps} ref={provided.innerRef}>
