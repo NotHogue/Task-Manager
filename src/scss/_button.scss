@@ -89,10 +89,19 @@ a {
     height: 100px
 }
 
+.formInput:focus {
+    outline: 1px solid white;
+}
+
 .addForm {
     width: 100%;
     height: 40px;
 }
+
+.addForm:focus {
+    outline: 1px solid white;
+}
+
 
 .describeButtonContainer {
     display: flex;

@@ -12,8 +12,8 @@ export const Header = () => {
             </div>
             <div className='mainHeader'>
                 <div className='title'>
-                    <label >Choose a Workspace: </label>
-                    <select className='' name='Workspaces' id='Workspaces'>
+                    <label className='workLabel'>Choose a Workspace: </label>
+                    <select className='listItem addForm' name='Workspaces' id='Workspaces'>
                         <option value={currentValue} defaultValue={'DEFAULT'}>Select...</option>
                         <option value='DEFAULT'>Jeremiah's Workspace</option>
                     </select>

@@ -28,7 +28,7 @@ export const Col = ({ list, id }) => {
         const des = obj ? obj.description : '';
         const [addFormText, setAddFormText] = useState('');
         const [desFormText, setDesFormText] = useState(des);
-        const [addDes, setAddDes] = useState(false);
+        const [addDes, setAddDes] = useState(false); //switch would be better
         if (type === 'Add') {
 
             if (id !== popUp) {
