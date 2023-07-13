@@ -9,10 +9,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.get('/', (req, res) => {
-    console.log(path.join(__dirname, '../../build/index.html'));
-    res.sendFile(path.join(__dirname, '../../build/index.html'));
-}); // FUCKING FIX IT 
+// app.get('/', (req, res) => {
+//     console.log(path.join(__dirname, '../../build/index.html'));
+//     res.sendFile(path.join(__dirname, '../../build/index.html'));
+// }); // FUCKING FIX IT 
 
 app.use('/Info', infoRouter);
 

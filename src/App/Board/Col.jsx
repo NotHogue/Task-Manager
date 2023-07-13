@@ -4,53 +4,63 @@ import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../../actions/actions';
 import Modal from 'reactjs-popup';
 import pull from '../../../pull.png'
+import pencil from '../../../Pencil.png'
 
 
 export const Col = ({ list, id }) => {
     const [modalVis, setModalVis] = useState(false);
     const [modalTask, setModalTask] = useState({});
-    const [modalIndex, setModalIndex] = useState(0);
-    // const des = useSelector((state) => state.tasks.Workspace[name][id][modalIndex].description);
+    const [popUp, setPopUp] = useState('');
     const name = 'Jeremiah';
     const dispatch = useDispatch();
-    const popUp = useSelector((state) => state.tasks.popUp);
     const handleClick = (type, id, task) => {
-        if (type === 'Add') {
-            dispatch(actions.addPopUp(id))
-        };
         if (type === 'Delete') dispatch(actions.deleteCard(task, id));
     }
-    const handleSubmit = (text, type, id, task) => { //refactor pls i BEG
+    const handleSubmit = (text, type, id, elId) => { //refactor pls i BEG
         if (type === 'Add') dispatch(actions.addCard(text, id));
-        if (type === 'Describe') dispatch(actions.updateDescription(text, id, task));
+        if (type === 'Describe') dispatch(actions.updateDescription(text, id, elId));
     }
 
     //<----------------------------------------------------------------Button Start-------------------------------------------------------------------------->
     const Button = ({ type, el, id }) => {
+        const list = useSelector((state) => state.tasks.Workspace[name][id]);
+        const obj = list.find((o) => o.id === el.id);
+        const des = obj ? obj.description : '';
         const [addFormText, setAddFormText] = useState('');
-        const [desFormText, setDesFormText] = useState();
-        // console.log(des);
+        const [desFormText, setDesFormText] = useState(des);
+        const [addDes, setAddDes] = useState(false);
         if (type === 'Add') {
 
             if (id !== popUp) {
                 return (
-                    <button className='button-84' onClick={() => handleClick(type, id)}>+ Add</button>
+                    <button className='button-84' onClick={() => setPopUp(id)}>+ Add</button>
                 )
             };
 
             return (
                 <form>
-                    <input className='listItem' type="text" onChange={(e) => setAddFormText(e.target.value)} placeholder='Enter name for card...' />
-                    <button type='submit' className='button-84' onClick={() => handleSubmit(addFormText, type, id)}>+ Add</button>
+                    <input className='listItem addForm' type="text" onChange={(e) => setAddFormText(e.target.value)} placeholder='Enter name for card...' />
+                    <button type='submit' className='button-84' onClick={() => { handleSubmit(addFormText, type, id); setPopUp('') }}>+ Add</button>
                 </form>
             );
         }
-        if (type === 'Describe') {
+        if (type === 'Describe' && addDes === true) {
             return (
                 <form>
                     <input className='listItem formInput' type="text" onChange={(e) => setDesFormText(e.target.value)} value={desFormText} />
-                    <button type='submit' className='button-84 describeButton' onClick={() => { handleSubmit(desFormText, type, id, el.task); }}>Update</button>
+                    <button type='submit' className='button-84 describeButton' onClick={() => { handleSubmit(desFormText, type, id, el.id); setAddDes(false) }}>Update</button>
                 </form>
+            );
+        }
+        if (type === 'Describe' && addDes === false) {
+            return (
+                <><div className='listItem formInput'>{desFormText}</div>
+                    <div className='describeButtonContainer'>
+                        <button type='submit' className='button-84 describeButton'>Update</button>
+                        <button className='button-84 pencilButton' onClick={() => setAddDes(true)}><img src={pencil} /></button>
+                    </div></>
+
+
             );
         }
         if (type === 'Delete') {
@@ -67,6 +77,7 @@ export const Col = ({ list, id }) => {
     return (
         <>
             <Modal open={modalVis} onClose={() => { setModalVis(false); setModalTask({}) }} >
+                <button className='button-84 closeModal' onClick={() => setModalVis(false)}>X</button>
                 <div className='popup-header'>Task: {modalTask.task}</div >
                 <div className='popup-header'>Description: </div>
                 <Button type='Describe' el={modalTask} id={id} /></Modal>
@@ -82,7 +93,7 @@ export const Col = ({ list, id }) => {
                                         {...provided.dragHandleProps}
                                         ref={provided.innerRef}>
                                         <img src={pull} />
-                                        <button className='listItem taskButton' onClick={() => { setModalVis(true); setModalTask(el); setModalIndex(index) }}>{el.task}</button>
+                                        <button className='listItem taskButton' onClick={() => { setModalVis(true); setModalTask(el); }}>{el.task}</button>
                                         <Button type='Delete' el={el} id={id} />
                                     </div>
 

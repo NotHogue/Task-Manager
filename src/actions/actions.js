@@ -18,10 +18,6 @@ export const updateTwoBoards = (result, workspace) => ({
     workspace: workspace
   }
 });
-export const addPopUp = (id) => ({
-  type: types.POP_UP,
-  payload: id
-});
 export const addCard = (text, id) => ({
   type: types.ADD_CARD,
   payload: {
@@ -29,10 +25,10 @@ export const addCard = (text, id) => ({
     id: id
   }
 });
-export const updateDescription = (text, id, task) => ({
+export const updateDescription = (text, id, elId) => ({
   type: types.UPDATE_DESCRIPTION,
   payload: {
-    task: task,
+    elId: elId,
     id: id,
     description: text
   }

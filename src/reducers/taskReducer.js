@@ -1,20 +1,21 @@
 import * as types from '../actions/actionTypes.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
     Workspace: {
         Jeremiah: {
             toDo: [{
-                id: '',
+                id: uuidv4(),
                 task: 'failure',
                 description: 'its all gone wrong'
             },
             {
-                id: '',
+                id: uuidv4(),
                 task: 'sadness',
                 description: 'i cant even center a div'
             },
             {
-                id: '',
+                id: uuidv4(),
                 task: 'copium',
                 description: 'this shit is ass'
             }
@@ -24,8 +25,6 @@ const initialState = {
 
         }
     },
-    navBool: false,
-    popUp: ''
 };
 
 
@@ -53,27 +52,22 @@ const taskReducer = (state = initialState, action) => {
             listDest.splice(result.destination.index, 0, deleted);
             return newTask;
         }
-        case types.POP_UP: {
-            newTask.popUp = action.payload;
-            return newTask;
-        }
         case types.ADD_CARD: {
             if (action.payload.task === '') return newTask;
-            newTask.popUp = '';
             const list = newTask.Workspace['Jeremiah'][action.payload.id]; //pull in specific workspace
             list.push({
-                // id: `task-${list.length+1}`,
+                id: uuidv4(),
                 task: action.payload.task,
                 description: ''
             })
             return newTask;
         }
         case types.UPDATE_DESCRIPTION: { //probably refactor to be faster with uuid PLEASE REFACTOR LMAO
-            const { task, id, description } = action.payload;
+            const { id, description, elId } = action.payload;
             const targetList = newTask.Workspace['Jeremiah'][id];
 
             targetList.forEach(el => {
-                if (el.task === task) el.description = description;
+                if (el.id === elId) el.description = description;
             });
             return newTask;
         }

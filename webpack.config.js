@@ -18,7 +18,7 @@ module.exports = () => {
         mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
         devServer: {
             proxy: {
-                "/": "http://localhost:3000",
+                "/Info": "http://localhost:3000",
             }
         },
         module: {
