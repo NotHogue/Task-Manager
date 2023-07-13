@@ -18,7 +18,7 @@
     margin: 0;
     outline: none;
     overflow: hidden;
-    padding: 5px;
+    padding: 0;
     width: 80%;
     text-align: center;
     text-decoration: none;
@@ -56,4 +56,35 @@ a {
     .button-84 {
         height: 48px;
     }
+}
+
+.taskButton {
+    display: flex;
+    justify-content: start;
+    width: 90%;
+    margin: -8px
+}
+
+.deleteButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px
+}
+
+.describeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px
+}
+
+.formInput {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+    align-items: end;
+    text-align: inherit;
+    width: 70%;
+    height: 100px
 }

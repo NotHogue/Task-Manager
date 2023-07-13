@@ -22,8 +22,23 @@ export const addPopUp = (id) => ({
   type: types.POP_UP,
   payload: id
 });
-export const addCard = (task, id) => ({
+export const addCard = (text, id) => ({
   type: types.ADD_CARD,
+  payload: {
+    task: text,
+    id: id
+  }
+});
+export const updateDescription = (text, id, task) => ({
+  type: types.UPDATE_DESCRIPTION,
+  payload: {
+    task: task,
+    id: id,
+    description: text
+  }
+});
+export const deleteCard = (task, id) => ({
+  type: types.DELETE_CARD,
   payload: {
     task: task,
     id: id

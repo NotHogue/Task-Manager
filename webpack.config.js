@@ -45,6 +45,14 @@ module.exports = () => {
                         'sass-loader'
                     ],
                 },
+                {
+                    test: /\.(png|svg|jpe?g|gif)$/,
+                    loader: 'url-loader',
+                    // options: {
+                    //     name: '[name].[ext]',
+                    //     outputPath: './assets'
+                    // } 
+                },
             ]
         },
         plugins: [

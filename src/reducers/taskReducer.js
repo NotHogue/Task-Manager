@@ -4,19 +4,19 @@ const initialState = {
     Workspace: {
         Jeremiah: {
             toDo: [{
-                // id: 'task-1',
+                id: '',
                 task: 'failure',
-                description: 'i have never won in my life'
+                description: 'its all gone wrong'
             },
             {
-                // id: 'task-2',
+                id: '',
                 task: 'sadness',
-                description: 'i have never been happy in my life'
+                description: 'i cant even center a div'
             },
             {
-                // id: 'task-3',
+                id: '',
                 task: 'copium',
-                description: 'i have never coped in my life'
+                description: 'this shit is ass'
             }
             ],
             doing: [],
@@ -58,13 +58,40 @@ const taskReducer = (state = initialState, action) => {
             return newTask;
         }
         case types.ADD_CARD: {
-            if(action.payload.task === '') return newTask;
+            if (action.payload.task === '') return newTask;
             newTask.popUp = '';
             const list = newTask.Workspace['Jeremiah'][action.payload.id]; //pull in specific workspace
             list.push({
                 // id: `task-${list.length+1}`,
                 task: action.payload.task,
+                description: ''
             })
+            return newTask;
+        }
+        case types.UPDATE_DESCRIPTION: { //probably refactor to be faster with uuid PLEASE REFACTOR LMAO
+            const { task, id, description } = action.payload;
+            const targetList = newTask.Workspace['Jeremiah'][id];
+
+            targetList.forEach(el => {
+                if (el.task === task) el.description = description;
+            });
+            return newTask;
+        }
+        case types.DELETE_CARD: { //GOD REFACTOR THIS SHIT IS  TERRIBLE
+            const { task, id } = action.payload;
+            let targetList = newTask.Workspace['Jeremiah'][id];
+            let index = 0;
+            let found = false;
+            while (index <= targetList.length - 1) {
+                if (targetList[index].task === task) {
+                    found = true;
+                    break;
+                }
+                index++;
+            }
+            if (found === true) {
+                targetList.splice(index, 1);
+            }
             return newTask;
         }
         default:
