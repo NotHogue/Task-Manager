@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MONGO_URI = 'mongodb+srv://jhogue:wltkzjMtejMRR4nQ@cluster0.fexmjmv.mongodb.net/?retryWrites=true&w=majority';
+const MONGO_URI = ''; //enter db uri here
 
 
 
